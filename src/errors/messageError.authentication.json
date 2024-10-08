@@ -1,0 +1,10 @@
+{
+    "comparePasswords": "AUTH-001 - Error occurred while comparing passwords. Please try again later.",
+    "hashPassword": "AUTH-002 - Error encountered while hashing the password. Please ensure the password is valid and try again.",
+    "getJwtToken": "AUTH-003 - Error generating JWT token. Please try again later.",
+    "verifyToken": "AUTH-004 - Error verifying JWT token. Please ensure the token is valid and try again.",
+    "getRandomAuthenticationCode": "AUTH-005 - Error generating authentication code. Please try again later.",
+    "sendEmail": "AUTH-006 - Error sending verification email. Please check the email address and try again.",
+    "mapSubmodulesWithPermissions": "AUTH-007 - Function 'mapSubmodulesWithPermissions' is not defined.",
+    "filteredPermissions": "AUTH-008 - Function 'filteredPermissions' is not defined."
+}

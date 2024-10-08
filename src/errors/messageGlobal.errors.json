@@ -1,0 +1,7 @@
+{
+    "tokenInvalid": "invalid token, logout and try again",
+    "userNotAuthorized": "the user is not authorized in the session, contact the administrator to access the application.",
+    "userDoesNotExist": "incorrect credentials the user does not exist",
+    "somethingWrong": "something went wrong when performing a process that was not found.",
+    "noSessionToken": "no session token, logout and try again"
+}
