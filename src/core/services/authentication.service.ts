@@ -50,9 +50,7 @@ export class AuthenticationService {
 
   verifyToken(token: string) {
     try {
-      console.log(token)
       const payload = this.jwtService.verify(token);
-      console.log(payload)
       return payload;
     } catch (error) {
       this.logger.error(error);

@@ -3,6 +3,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { BadRequestException, Injectable, Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
+import { InjectRepository } from "@nestjs/typeorm";
 
 // Interfaces
 import { JwtPayload } from "../../../interfaces/jwt-payload.interfaces";
@@ -13,7 +14,6 @@ import messageGlobal from "../../../errors/messageGlobal.errors.json";
 // Services
 import { EntityService } from "../../../models/service/entity/entity.service";
 import { ConfigService } from '../config.service';
-import { InjectRepository } from "@nestjs/typeorm";
 
 // Entities
 import {User} from '../../../models/user/entities/user.entity'
@@ -41,8 +41,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     async validate(payload: JwtPayload) {
         const { id = '' } = payload;
         const queryUser = this.userService.find();
-        const user = await queryUser.select(['user.id', 'user.isState'])
-            .where('user.id = :id', { id })
+        const user = await queryUser.select(['User.id', 'User.isState'])
+            .where('User.id = :id', { id })
             .getOne();
         if (!user) return new BadRequestException(messageGlobal.userDoesNotExist);
         if (!user?.isState) return new BadRequestException(messageGlobal.userNotAuthorized);

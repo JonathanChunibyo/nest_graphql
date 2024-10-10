@@ -1,4 +1,7 @@
+// Utility
 import { SetMetadata } from "@nestjs/common";
+
+// Enum
 import { ModuleEnum } from "../enums/modules.enums";
 
 export const MODULE_KEY = "module";

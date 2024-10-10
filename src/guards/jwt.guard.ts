@@ -1,6 +1,5 @@
 // Libraries
 import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
 
 // Services
 import { JwtStrategy } from '../core/services/strategies/jwt.strategy';
@@ -24,7 +23,6 @@ export class JwtGuard implements CanActivate {
     context: ExecutionContext,
   ): Promise<boolean> {
     try {
-      console.log("ingreso 1")
       const ctx = GqlExecutionContext.create(context);
       const request = ctx.getContext().req;
       const authHeader = request.headers['authorization']

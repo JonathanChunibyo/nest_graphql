@@ -1,3 +1,4 @@
+// Libraries
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
@@ -16,7 +17,4 @@ export class CreateUserInput {
 
     @Field()
     password: string;
-
-    @Field()
-    isState: boolean;
 }

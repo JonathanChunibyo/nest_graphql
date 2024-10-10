@@ -1,5 +1,10 @@
+// Service
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+
+// TypeORM Utilities
 import { DeepPartial, Repository, SelectQueryBuilder } from 'typeorm';
+
+// TypeORM Type
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 @Injectable()

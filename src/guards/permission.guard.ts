@@ -1,10 +1,10 @@
 // Libraries
 import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { In } from 'typeorm';
 
 // Constants
 import * as message from '../errors/messageGlobal.errors.json';
+import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
 export class PermissionGuard implements CanActivate {
@@ -20,10 +20,10 @@ export class PermissionGuard implements CanActivate {
     context: ExecutionContext,
   ): Promise<boolean> {
     try {
-      console.log("ingreso 2")
       const requiredPermission = this.reflector.get<Array<string>>('module', context.getHandler());
       if (!requiredPermission.length) return true;
-      const request = context.switchToHttp().getRequest();
+      const ctx = GqlExecutionContext.create(context);
+      const request = ctx.getContext().req;
       const user = request.userToken;
       if (!user) throw message.userNotAuthorized;
       return true;

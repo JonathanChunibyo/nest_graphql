@@ -1,17 +1,24 @@
-import {Module} from '@nestjs/common';
-import {UserResolver} from './user.resolver';
-import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
+// Module
+import { Module } from '@nestjs/common';
+// Resolver
+import { UserResolver } from './user.resolver';
+// Token
+import { getRepositoryToken } from '@nestjs/typeorm';
+// Entity
 import { User } from './entities/user.entity';
+// Service
 import { EntityService } from '../service/entity/entity.service';
+// DTO
 import { CreateUserInput } from './dto/create-user.input';
+// DTO
 import { UpdateUserInput } from './dto/update-user.input';
+// Repository
 import { Repository } from 'typeorm';
+// Config
 import { ConfigModule } from 'src/core/services/config.module';
-//import { ConfigService } from 'src/core/database/config.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
     ConfigModule
   ],
   providers: [

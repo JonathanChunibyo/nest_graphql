@@ -1,0 +1,4 @@
+{
+    "userDoesNotExist": "incorrect credentials the user does not exist",
+    "passwordIncorrect": "The password is incorrect, please verify and try again"
+}

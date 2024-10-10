@@ -1,11 +1,19 @@
+// Libraries
 import { Global, Module } from '@nestjs/common';
-import { AuthenticationService } from './authentication.service';
-import { JwtStrategy } from 'src/core/services/strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigService } from './config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
+
+// Service
+import { AuthenticationService } from './authentication.service';
+import { ConfigService } from './config.service';
+
+// Strategies
+import { JwtStrategy } from 'src/core/services/strategies/jwt.strategy';
+
+// Entities
+import { User } from 'src/models/user/entities/user.entity';
 
 @Global()
 @Module({
@@ -37,10 +45,18 @@ import { ConfigModule as NestConfigModule } from '@nestjs/config';
         logging: true,
       }),
     }),
+    TypeOrmModule.forFeature([User]),
   ],
   providers: [
-    ConfigService
+    ConfigService,
+    JwtStrategy,
+    AuthenticationService,
   ],
-  exports: [ConfigService],
+  exports: [
+    ConfigService, 
+    JwtStrategy,
+    AuthenticationService, 
+    TypeOrmModule.forFeature([User]),
+  ],
 })
 export class ConfigModule {}

@@ -40,7 +40,7 @@ export class User {
     @Field()
     password: string;
 
-    @Column('boolean')
+    @Column({ type: 'boolean', default: true })
     @Field()
     isState: boolean;
 
