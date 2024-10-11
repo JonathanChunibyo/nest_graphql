@@ -6,11 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
 
 // Service
-import { AuthenticationService } from './authentication.service';
-import { ConfigService } from './config.service';
+import { AuthenticationService } from './services/authentication.service';
+import { EnvironmentService } from './services/environment.service';
 
 // Strategies
-import { JwtStrategy } from 'src/core/services/strategies/jwt.strategy';
+import { JwtStrategy } from 'src/core/strategies/jwt.strategy';
 
 // Entities
 import { User } from 'src/models/user/entities/user.entity';
@@ -23,8 +23,8 @@ import { User } from 'src/models/user/entities/user.entity';
     }),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
+      inject: [EnvironmentService],
+      useFactory: async (configService: EnvironmentService) => ({
         secret: configService.get('SECRET_KEY'),
         signOptions: {
           algorithm: 'HS256'
@@ -32,14 +32,16 @@ import { User } from 'src/models/user/entities/user.entity';
       }),
     }),
     TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
+      inject: [EnvironmentService],
+      useFactory: (configService: EnvironmentService) => ({
         type: 'mariadb',
         host: configService.get('HOST_DB'),
         port: Number(configService.get('PORT_DB')),
         username: configService.get('USERNAME_DB'),
         password: configService.get('PASSWORD_DB'),
         database: configService.get('DATABASE_DB'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        migrations: [__dirname + '/migrations/*{.ts,.js}'],
         synchronize: false,
         autoLoadEntities: true,
         logging: true,
@@ -48,12 +50,12 @@ import { User } from 'src/models/user/entities/user.entity';
     TypeOrmModule.forFeature([User]),
   ],
   providers: [
-    ConfigService,
+    EnvironmentService,
     JwtStrategy,
     AuthenticationService,
   ],
   exports: [
-    ConfigService, 
+    EnvironmentService, 
     JwtStrategy,
     AuthenticationService, 
     TypeOrmModule.forFeature([User]),

@@ -1,15 +1,15 @@
 // Libraries
-import { Injectable, Logger, BadRequestException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, Logger, InternalServerErrorException } from '@nestjs/common';
 // TODO: The use of the 'bcrypt' library is de-linked due to the error in the current or implemented process for the 'DockerFile'. The implementation ('bcrypt') is commented and provisionally the 'argon2' library is used.
 // import * as bcrypt from 'bcrypt';
 import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 
 // Interfaces
-import { JwtPayload } from '../../interfaces/jwt-payload.interfaces';
+import { JwtPayload } from '../interfaces/jwt-payload.interfaces';
 
 // Constants - Messages
-import * as messageError from '../../errors/messageError.authentication.json';
+import * as messageError from '../errors/messageError.authentication.json';
 
 @Injectable()
 export class AuthenticationService {

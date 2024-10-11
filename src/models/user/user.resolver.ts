@@ -1,5 +1,5 @@
 // GraphQL
-import { Resolver, Query, Mutation, Args, ArgsType, Field, InputType } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ArgsType, Field } from '@nestjs/graphql';
 // Service
 import { EntityService } from '../service/entity/entity.service';
 // DTO
@@ -15,9 +15,9 @@ import { Repository } from 'typeorm';
 // Input
 import { EntityInput } from '../service/entity/entity.input';
 // Decorator
-import { Auth } from 'src/decorators/auth.decorators';
+import { Auth } from 'src/core/decorators/auth.decorators';
 // Enum
-import { ModuleEnum } from 'src/enums/modules.enums';
+import { ModuleEnum } from 'src/core/enums/modules.enums';
 // Service
 import { AuthenticationService } from 'src/core/services/authentication.service';
 // Exception

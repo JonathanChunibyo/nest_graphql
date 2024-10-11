@@ -15,7 +15,7 @@ import { UpdateUserInput } from './dto/update-user.input';
 // Repository
 import { Repository } from 'typeorm';
 // Config
-import { ConfigModule } from 'src/core/services/config.module';
+import { ConfigModule } from 'src/core/config.module';
 
 @Module({
   imports: [

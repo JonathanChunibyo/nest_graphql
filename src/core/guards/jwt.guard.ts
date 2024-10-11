@@ -2,8 +2,8 @@
 import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 
 // Services
-import { JwtStrategy } from '../core/services/strategies/jwt.strategy';
-import { AuthenticationService } from '../core/services/authentication.service';
+import { JwtStrategy } from '../strategies/jwt.strategy';
+import { AuthenticationService } from '../services/authentication.service';
 
 // Constants
 import * as message from '../errors/messageGlobal.errors.json';

@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 
 @Injectable()
-export class ConfigService {
+export class EnvironmentService {
 
   #envPath: any;
   #nodeEnv: string = process.env.APP_ENV

@@ -6,21 +6,21 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 // Interfaces
-import { JwtPayload } from "../../../interfaces/jwt-payload.interfaces";
+import { JwtPayload } from "../interfaces/jwt-payload.interfaces";
 
 // Constants - Messages
-import messageGlobal from "../../../errors/messageGlobal.errors.json";
+import messageGlobal from "../errors/messageGlobal.errors.json";
 
 // Services
-import { EntityService } from "../../../models/service/entity/entity.service";
-import { ConfigService } from '../config.service';
+import { EntityService } from "../../models/service/entity/entity.service";
+import { EnvironmentService } from '../services/environment.service';
 
 // Entities
-import {User} from '../../../models/user/entities/user.entity'
+import {User} from '../../models/user/entities/user.entity'
 
 // DTO
-import {CreateUserInput} from '../../../models/user/dto/create-user.input';
-import {UpdateUserInput} from '../../../models/user/dto/update-user.input';
+import {CreateUserInput} from '../../models/user/dto/create-user.input';
+import {UpdateUserInput} from '../../models/user/dto/update-user.input';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -30,7 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(
         @InjectRepository(User) private readonly userRepository: Repository<User>
     ) {
-        const configService = new ConfigService()
+        const configService = new EnvironmentService()
         super({
             secretOrKey: configService.get('SECRET_KEY'),
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
